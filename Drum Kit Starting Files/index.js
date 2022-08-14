@@ -4,9 +4,14 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", buttonCall);
 }
 
-function buttonCall() {
+document.addEventListener("keydown", function (event) {
+  var keyBoard = event.key;
+  buttonCall(keyBoard);
+});
+
+function buttonCall(keyBoard) {
   var buttonInnerHTML = this.innerHTML;
-  switch (buttonInnerHTML) {
+  switch (buttonInnerHTML || keyBoard) {
     case "w":
       var crash = new Audio("sounds/crash.mp3");
       crash.play();
@@ -47,5 +52,3 @@ function buttonCall() {
       break;
   }
 }
-
-document.addEventListener("keydown", buttonCall);
